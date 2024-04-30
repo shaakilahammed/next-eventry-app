@@ -8,10 +8,10 @@ const RegisterPage = () => {
                 <RegisterForm />
 
                 <span className="text-center text-xs text-gray-500">
-                    Already have an account?
+                    Already have an account?{'  '}
                     <a
                         className="underline hover:text-indigo-600"
-                        href="./login.html"
+                        href="/login"
                     >
                         Login
                     </a>

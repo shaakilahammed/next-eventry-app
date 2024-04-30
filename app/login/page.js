@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import LoginForm from '../components/form/LoginForm';
 
 const LoginPage = () => {
@@ -8,13 +9,13 @@ const LoginPage = () => {
                 <LoginForm />
 
                 <span className="text-center text-xs text-gray-500">
-                    Don&apos;t have an account?
-                    <a
+                    Don&apos;t have an account?{'  '}
+                    <Link
                         className="underline hover:text-indigo-600"
-                        href="./register.html"
+                        href="/register"
                     >
                         Register
-                    </a>
+                    </Link>
                 </span>
             </div>
         </section>
