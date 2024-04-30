@@ -1,11 +1,13 @@
+import { getAllEvents } from '@/actions/event';
 import EventList from './components/landing/EventList';
 import Header from './components/landing/Header';
 
-const Home = () => {
+const Home = async () => {
+    const events = await getAllEvents();
     return (
-        <section class="container">
+        <section className="container">
             <Header />
-            <EventList />
+            <EventList events={events} />
         </section>
     );
 };
