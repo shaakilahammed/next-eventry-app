@@ -27,7 +27,11 @@ const HeroSection = ({ event }) => {
                     </div>
                 </div>
 
-                <CardActions forDetails={true} />
+                <CardActions
+                    forDetails={true}
+                    eventId={event?.id}
+                    interestedIds={event?.interested_ids}
+                />
             </div>
         </section>
     );
