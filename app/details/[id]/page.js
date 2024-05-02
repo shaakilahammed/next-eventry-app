@@ -3,6 +3,18 @@ import EventDetails from '@/app/components/details/EventDetails';
 import HeroSection from '@/app/components/details/HeroSection';
 import VenueLocation from '@/app/components/details/VenueLocation';
 
+export const generateMetadata = async ({ params: { id } }) => {
+    const event = await getEventbyId(id);
+
+    return {
+        title: `Eventry - ${event?.name}`,
+        description: event?.details,
+        openGraph: {
+            images: [event?.imageUrl],
+        },
+    };
+};
+
 const EventDetailsPage = async ({ params: { id } }) => {
     const event = await getEventbyId(id);
     return (
