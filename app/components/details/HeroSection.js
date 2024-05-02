@@ -1,7 +1,9 @@
+import { getBlurData } from '@/utils/utils';
 import Image from 'next/image';
 import CardActions from '../CardActions';
 
-const HeroSection = ({ event }) => {
+const HeroSection = async ({ event }) => {
+    const { base64 } = await getBlurData(event?.imageUrl);
     return (
         <section className="container">
             <div className="bg-gradient-to-b from-slate-200/20 to-slate-800/30">
@@ -11,6 +13,8 @@ const HeroSection = ({ event }) => {
                     width={900}
                     height={450}
                     className="h-[450px] mx-auto"
+                    placeholder="blur"
+                    blurDataURL={base64}
                 />
             </div>
 

@@ -1,13 +1,15 @@
-import { getAllEvents } from '@/actions/event';
+import { Suspense } from 'react';
+import Loader from './components/Loader';
 import EventList from './components/landing/EventList';
 import Header from './components/landing/Header';
 
-const Home = async ({ searchParams: { query } }) => {
-    const events = await getAllEvents(query);
+const Home = ({ searchParams: { query } }) => {
     return (
         <section className="container">
             <Header />
-            <EventList events={events} />
+            <Suspense key={query} fallback={<Loader />}>
+                <EventList query={query} />
+            </Suspense>
         </section>
     );
 };
