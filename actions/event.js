@@ -70,7 +70,7 @@ const sendEmail = async (eventId, user) => {
         const event = await getEventbyId(eventId);
         const resend = new Resend(process.env.RESEND_API_KEY);
         const message = `Dear ${user?.name}, you have been successfully registered for the event, ${event?.name}. Please carry this email and your official id to the venue. We are excited to have you here.`;
-        const sent = await resend.emails.send({
+        await resend.emails.send({
             from: 'onboarding@resend.dev',
             to: user?.email,
             subject: 'Successfully Registered for the event!',
