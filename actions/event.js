@@ -8,10 +8,16 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { Resend } from 'resend';
 
-export const getAllEvents = async () => {
+export const getAllEvents = async (query) => {
+    let events = [];
     try {
         await connectMongo();
-        const events = await Event.find().lean();
+        if (query) {
+            const regex = new RegExp(query, 'i');
+            events = await Event.find({ name: { $regex: regex } }).lean();
+        } else {
+            events = await Event.find().lean();
+        }
         return replaceMongoIdInArray(events);
     } catch (error) {
         console.log(error);
