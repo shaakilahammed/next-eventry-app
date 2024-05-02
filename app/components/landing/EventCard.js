@@ -29,6 +29,7 @@ const EventCard = ({ event }) => {
                 <CardActions
                     eventId={event?.id}
                     interestedIds={event?.interested_ids}
+                    goingUserIds={event?.going_ids}
                 />
             </div>
         </div>

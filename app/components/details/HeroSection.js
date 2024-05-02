@@ -31,6 +31,7 @@ const HeroSection = ({ event }) => {
                     forDetails={true}
                     eventId={event?.id}
                     interestedIds={event?.interested_ids}
+                    goingUserIds={event?.going_ids}
                 />
             </div>
         </section>

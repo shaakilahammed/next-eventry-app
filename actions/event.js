@@ -1,7 +1,10 @@
+'use server';
 import connectMongo from '@/dbConnect/connectMongo';
 import Event from '@/models/Event';
 import { replaceMongoIdInArray, replaceMongoIdInObject } from '@/utils/utils';
 import mongoose from 'mongoose';
+import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
 
 export const getAllEvents = async () => {
     try {
@@ -41,4 +44,19 @@ export const updateInterest = async (eventId, authId) => {
     } catch (error) {
         console.log(error);
     }
+};
+
+export const updateGoing = async (eventId, auth) => {
+    try {
+        await connectMongo();
+        const event = await Event.findById(eventId);
+
+        event.going_ids.push(new mongoose.Types.ObjectId(auth?.id));
+        event.save();
+
+        revalidatePath('/');
+    } catch (error) {
+        console.log(error);
+    }
+    redirect('/');
 };
